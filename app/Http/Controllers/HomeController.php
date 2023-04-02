@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendence;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,12 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
             return redirect()->back();
+  }
+
+  public function logout()
+  {
+    auth()->logout();
+    return redirect()->route('login');
   }
   
 }

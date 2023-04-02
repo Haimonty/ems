@@ -4,12 +4,15 @@
    <div class='col-md-3'></div>
    <div class='col-md-6'>
 <table class="table table-striped">
+  
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">TypeName</th>
+      <th scope="col">Name</th>
       <th scope="col">Days</th>
-      <th scope="col">Description</th>
+     <th scope="col">Description</th>
+     <th scope="col">Status</th>
+
     </tr>
   </thead>
   <tbody>

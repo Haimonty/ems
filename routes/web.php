@@ -23,6 +23,7 @@ Route::post('/do-login',[HomeController::class,'doLogin'])->name('do.login');
 //for employee
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home',[HomeController::class,'home'])->name('home'); 
+    Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
 
 Route::get('/employee',[EmployeeController::class, 'employee'])->name('employee.list'); 
 Route:: get('/employee/create',[EmployeeController::class,'employeeCreate']);

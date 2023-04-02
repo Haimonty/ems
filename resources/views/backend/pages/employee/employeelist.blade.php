@@ -1,8 +1,8 @@
 @extends('master')
 @section('content')
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
   <table class="table">
     <a href="{{url('/employee/create')}}" class="btn btn-primary my-2">Add new</a>
 
@@ -46,6 +46,6 @@
 </table>
 {{$employees->links()}}
   </div>
-  <div class="col-md-3"></div>
+  <div class="col-md-1"></div>
 </div>
 @endsection
