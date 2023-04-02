@@ -21,6 +21,8 @@
       <td>Sick</td>
       <td>03-07</td>
       <td>Should give valid medical report</td>
+      <td>Active</td>
+
     </tr>
   
   </tbody>
