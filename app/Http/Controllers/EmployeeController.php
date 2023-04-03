@@ -45,13 +45,13 @@ class EmployeeController extends Controller
 
     public function view($id)
     {
-       $employee=Employee::find($id);
+       $employees=Employee::find($id);
       
-        return view('backend.pages.employee.view',compact('employee'));
+        return view('backend.pages.employee.view',compact('employees'));
     }
     public function delete($id)
     {
-        Employee::find($id);
+        Employee::find($id)->delete();
         
         return redirect()->back();
     }

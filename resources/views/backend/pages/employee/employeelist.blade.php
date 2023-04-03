@@ -1,8 +1,6 @@
 @extends('master')
 @section('content')
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
+
   <table class="table">
     <a href="{{url('/employee/create')}}" class="btn btn-primary my-2">Add new</a>
 
@@ -18,6 +16,7 @@
       <th scope="col">Department</th>
       <th scope="col">Salary_structure</th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
 
     </tr>
  </thead>
@@ -35,7 +34,7 @@
       <td>{{$data->status}}</td>
 
      <td>
-      <a href="{{route('employee.view',$data->id)}}"class="btn btn-info">Veiw</a>
+      <a href="{{route('employee.view',$data->id)}}"class="btn btn-success">Veiw</a>
       <a href="{{route('employee.delete',$data->id)}}"class="btn btn-danger">Delete</a>
 
      </td>
@@ -45,7 +44,6 @@
   </tbody>
 </table>
 {{$employees->links()}}
-  </div>
-  <div class="col-md-1"></div>
-</div>
+
+  
 @endsection

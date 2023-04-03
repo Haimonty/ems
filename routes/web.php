@@ -61,6 +61,11 @@ Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name
 
 //for leavetype
 Route::get('/leaveType',[LeaveTypeController::class,'leaveType'])->name('leaveType.list');
+Route::get('/leaveType/create',[LeaveTypeController::class,'create'])->name('leavetype.create');
+Route::post('/leaveType/store',[LeaveTypeController::class,'store'])->name('leavetype.store');
+
+
+
 
 //for leave
 Route::get('/leave',[LeaveController::class,'leave'])->name('leave.list');
