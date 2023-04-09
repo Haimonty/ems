@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<form action="{{route('leavetype.store')}}" method='post'>
+<form >
     @csrf
        <div class="row">
            <div class="col-md-2"></div>
@@ -10,16 +10,10 @@
                <input name="name" placeholder="Enter name" type="text" class="form-control">
                </div>
                <div>
-               <label for="">Days:</label>
+               <label for="">Balance</label>
                <input name="days" placeholder="Enter days" type="number" class="form-control">
-               </div>
-               <div>
-                   <label for="">Write description</label>
-                   <textarea name="description" placeholder="Enter description" class="form-control"></textarea>
-               </div>
-
-
-               <div>
+             </div>
+                <div>
                    <label for="">Select Status</label>
                    <select name="status" id="" class="form-control">
                        <option value="active">Active</option>

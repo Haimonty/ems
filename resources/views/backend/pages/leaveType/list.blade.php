@@ -17,15 +17,15 @@
     </tr>
   </thead>
   <tbody>
-    
+    @foreach($leavetypes as $data)
     <tr>
-      <th scope="row"></th>
-      <td>Sick</td>
-      <td>03-07</td>
-      <td>Should give valid medical report</td>
-      <td>Active</td>
-
-    </tr>
+      <th scope="row">{{$data->id}}</th>
+      <td>{{$data->name}}</td>
+      <td>{{$data->days}}</td>
+      <td>{{$data->description}}</td>
+      <td>{{$data->status}}</td>
+</tr>
+@endforeach
   
   </tbody>
 </table>

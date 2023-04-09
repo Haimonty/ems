@@ -4,27 +4,22 @@
    <div class='col-md-3'></div>
    <div class='col-md-6'>
 <table class="table table-striped">
+<a href="{{route('leavebalance.create')}}" class="btn btn-primary my-2">Add new</a>
+
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Employee ID</th>
-      <th scope="col">Employee Name</th>
-      <th scope="col">Total leaves</th>
-      <th scope="col">Approved leaves</th>
-      <th scope="col">Left leaves</th>
+      <th scope="col">ID</th>
+      <th scope="col">Balance</th>
+      <th scope="col">Status</th>
 
-
-
-    </tr>
+</tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
       <td>123</td>
       <td>Mark</td>
-      <td>20</td>
-      <td>03</td>
-      <td>17</td>
+      
 
     </tr>
     

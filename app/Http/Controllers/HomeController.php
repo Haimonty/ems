@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendence;
+use App\Models\Department;
+use App\Models\Designation;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -11,8 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     public function home(){
+     $employees=User::all()->count();
+     $departments=Department::all()->count();
+     $designations=Designation::all()->count();
 
-        return view('dashboard');
+        return view('dashboard',compact('employees','departments','designations'));
     }
   public function login()
   {
@@ -21,23 +27,14 @@ class HomeController extends Controller
 
   public function dologin(Request $request)
   {
-    $validate=Validator::make($request->all(),[
-        'email'=>'required',
-        'password'=>'required|min:5',
-     ]);
-     if($validate->fails())
-        {
-           
-            return redirect()->back();
-        }
 
-        $credentials=$request->only(['email','password']);
-        if(auth()->attempt($credentials)){
-            return redirect()->route('home');
-        }
-            return redirect()->back();
+    // $credentials=$request->except('-token');
+$credentials=$request->only(['email','password']);
+if(Auth::attempt($credentials)){
+  return redirect()->route('home');
+}
+return redirect()->back()->with('message','invalid credentials');
   }
-
   public function logout()
   {
     auth()->logout();

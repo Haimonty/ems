@@ -12,16 +12,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded=[];
+    public function designation(){
+        return $this->belongsTo(Designation::class,"designation_id","id");
+    }
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
+    public function salary_structure()
+    {
+        return $this->belongsTo(Salary_structure::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,3 +44,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+

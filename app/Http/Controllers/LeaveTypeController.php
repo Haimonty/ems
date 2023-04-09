@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class LeaveTypeController extends Controller
 {
     public function leaveType()
-    {
-        return view('backend.pages.leaveType.list');
+    {  $leavetypes=LeaveType::all();
+        return view('backend.pages.leaveType.list',compact('leavetypes'));
     }
     public function create()
     {
@@ -26,6 +26,6 @@ class LeaveTypeController extends Controller
 
 
       ]); 
-      return redirect()->back();
+      return redirect()->route('leaveType.list');
     }
 }

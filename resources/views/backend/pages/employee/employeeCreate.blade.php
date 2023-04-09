@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<form action="{{route('employee.store')}}"  method='post'>
+<form action="{{route('employee.store')}}"  method='post' enctype="multipart/form-data">
 @csrf
 
        <div class="row">
@@ -11,20 +11,27 @@
                <label for="">Enter Employee Name:</label>
                <input name="name" placeholder="Enter Employee Name" type="text" class="form-control">
                </div>
+               <div>
+               <label for="">Enter Employee Email:</label>
+               <input name="email" placeholder="Enter employee email" type="email" class="form-control">
+               </div>
+               
+               <div>
+               <label for="">Enter Employee password:</label>
+               <input name="password" placeholder="Enter employee password" type="password" class="form-control">
+               </div>
+               
+
 
                <div> 
                <label for="">Enter Employee Phone Number:</label>
                <input name="number" placeholder="Enter category phone number" type="number" class="form-control">
                </div>
-               <div>
-               <label for="">Enter Employee Email:</label>
-               <input name="email" placeholder="Enter employee email" type="email" class="form-control">
-               </div>
+               
              
                <div>
                    <label for="">Upload Image</label>
-                   <input type="file" class="form-control">
-               </div>
+                   <input name="employee_image" placeholder="Upload  Emage " type="file" class="form-control">               </div>
 
                <div>
                    <label for="">Write description</label>

@@ -25,11 +25,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/home',[HomeController::class,'home'])->name('home'); 
     Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
 
-Route::get('/employee',[EmployeeController::class, 'employee'])->name('employee.list'); 
-Route:: get('/employee/create',[EmployeeController::class,'employeeCreate']);
-Route::post('/employee/store',[EmployeeController::class,'store'])->name('employee.store');
-Route::get('/employee/view{id}',[EmployeeController::class,'view'])->name('employee.view');
-Route::get('/employee/delete{id}',[EmployeeController::class,'delete'])->name('employee.delete');
+Route::get('/employee',[UserController::class, 'employee'])->name('employee.list'); 
+Route:: get('/employee/create',[UserController::class,'employeeCreate']);
+Route::post('/employee/store',[UserController::class,'store'])->name('employee.store');
+Route::get('/employee/view{id}',[UserController::class,'view'])->name('employee.view');
+Route::get('/employee/delete{id}',[UserController::class,'delete'])->name('employee.delete');
 
 //for designation
 Route::get('/designation',[DesignationController::class,'designation'])->name('designation.list');
@@ -58,6 +58,7 @@ Route::get('/payroll',[PayrollController::class,'payroll'])->name('payroll.list'
 //for leaveBalance
 
 Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name('leaveBalance.list');
+Route::get('/leaveBalance/create',[LeaveBalanceController::class,'create'])->name('leavebalance.create');
 
 //for leavetype
 Route::get('/leaveType',[LeaveTypeController::class,'leaveType'])->name('leaveType.list');

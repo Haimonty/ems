@@ -10,4 +10,8 @@ class LeaveBalanceController extends Controller
     {
         return view('backend.pages.leaveBalance.list');
     }
+    public function create()
+    {
+        return view('backend.pages.leaveBalance.create');
+    }
 }

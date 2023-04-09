@@ -25,6 +25,11 @@ class AttendenceController extends Controller
 
     }
     public function checkin(){
+      $isAttendence = Attendence::whereDate("date", now())->where("user_id",1)->first();
+      if(isset($isAttendence)){
+        notify()->warning("Already Checkedin");
+        return redirect()->back();
+      }
       Attendence::create([
         'in_time'=>now(),
         'date'=>now()->toDateString(),
@@ -33,6 +38,10 @@ class AttendenceController extends Controller
     }
     public function checkout(Request $request){
       $attendence = Attendence::whereDate("date",now())->where("user_id",1)->first();
+      if(isset($attendence->out_time)){
+        notify()->warning("Already Checked Out");
+        return redirect()->back();
+      }
       $attendence->update([
         'out_time'=>now()
       ]);

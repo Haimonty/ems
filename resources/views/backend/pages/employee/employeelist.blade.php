@@ -10,8 +10,9 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
+      <th scope="col">Image<th>
+     <th scope="col">Email</th>
       <th scope="col">Number</th>
-      <th scope="col">Email</th>
       <th scope="col">Designation</th>      
       <th scope="col">Department</th>
       <th scope="col">Salary_structure</th>
@@ -22,15 +23,19 @@
  </thead>
   <tbody>
   @foreach($employees as $key=>$data)
-
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$data->name}}</td>
-      <td>{{$data->number}}</td>
+      <td>
+                <img src="{{url('/uploads/'.$data->image)}}" alt="image">
+            </td>
+
        <td>{{$data->email}}</td>
-       <td>{{$data->designation->name}}</td>
-      <td>{{$data->department->name}}</td>
-      <td>{{$data->salary_structure->salaryclass}}</td>
+       
+       <td>{{$data->number}}</td>
+       <td>{{$data->designation?->name}}</td>
+      <td>{{$data->department?->name}}</td>
+      <td>{{$data->salary_structure?->salaryclass}} </td>
       <td>{{$data->status}}</td>
 
      <td>

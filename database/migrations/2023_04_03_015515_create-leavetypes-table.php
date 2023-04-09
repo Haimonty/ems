@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('days');
-            $table->string('descriptiion')->nullable();
+            $table->string('description')->nullable();
             $table->string('status');
             $table->rememberToken();
             $table->timestamps();
