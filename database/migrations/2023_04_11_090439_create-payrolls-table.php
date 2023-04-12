@@ -8,28 +8,28 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('attendences', function (Blueprint $table) {
+        Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('user_id')->default(1);
-            $table->time('in_time');
-            $table->time('out_time')->nullable();
-            $table->date('date');
-            $table->time('hour')->nullable();
-            
-            
+            $table->foreignId('user_id');
+            $table->foreignId('salary_structure_id')->constrained('salary_structures');
+            $table->string('status');
+            $table->string('month');
             $table->rememberToken();
             $table->timestamps();
-    });
-
+        }); 
     }
+
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         //
     }

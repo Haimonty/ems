@@ -6,6 +6,7 @@ use App\Models\Attendence;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Employee;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,4 +42,5 @@ return redirect()->back()->with('message','invalid credentials');
     return redirect()->route('login');
   }
   
+ 
 }

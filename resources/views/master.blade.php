@@ -9,6 +9,8 @@
         <title>Dashboard </title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{url('css/styles.css')}}" rel="stylesheet" />
+        @notifyCss
+
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
        
     
@@ -17,6 +19,9 @@
     <body class="sb-nav-fixed">
 
         @include('backend.partials.header')
+        
+        @include('notify::components.notify')
+
     
 
         
@@ -46,5 +51,7 @@
         <script src="{{url('assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{url('js/datatables-simple-demo.js')}}"></script>
+        @notifyJs
+
     </body>
 </html>

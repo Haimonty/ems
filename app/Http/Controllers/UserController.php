@@ -6,8 +6,12 @@ use App\Models\Department;
 use App\Models\Designation;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\LeaveBalance;
+use App\Models\Leavetype;
 use App\Models\Salary_structure;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class UserController extends Controller
 {
@@ -37,18 +41,38 @@ class UserController extends Controller
 
 
        }
-        User::create([
-            'name' => $request->name,
-            'number' => $request->number,
-            'email' => $request->email,
-            'password' =>bcrypt($request->password),
-            'designation_id' => $request->designation_id,
-            'department_id' => $request->department_id,
-            'salary_structure_id' => $request->salary_structure_id,
-            'status' => $request->status,
-            'image'=>$fileName
+       try{
+        DB::beginTransaction();
+        $user= User::create([
+             'name' => $request->name,
+             'number' => $request->number,
+             'email' => $request->email,
+             'password' =>bcrypt($request->password),
+             'designation_id' => $request->designation_id,
+             'department_id' => $request->department_id,
+             'salary_structure_id' => $request->salary_structure_id,
+             'status' => $request->status,
+             'image'=>$fileName
+ 
+         ]); 
+ 
+         $leaveType=Leavetype::all();
+         foreach($leaveType as $lt)
+         {
+             LeaveBalance::create([
+                 'user_id'=>$user->id,
+                 'leavetype_id'=>$lt->id,
+                 'balance'=>$lt->days,
+                 'status'=>'active'
+             ]);
+         }
+         DB::commit();
 
-        ]); 
+       }catch(Throwable $e){
+            DB::rollBack();
+            return redirect()->back();
+       }
+      
 
         return redirect()->route('employee.list');
     }

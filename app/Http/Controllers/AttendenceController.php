@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendence;
+use Carbon\Carbon;
+// use Carbon\Carbon;
 use Illuminate\Http\Request;
+ use Illuminate\Contracts\Auth\Factory;
+ use Illuminate\Contracts\Auth\Guard;
 
 class AttendenceController extends Controller
 {
     public function attendence()
     {
-      $attendences=Attendence::all();
-      return view('backend.pages.attendence.attendencelist',compact('attendences'));
+      $attendences=Attendence::where('user_id',auth()->user()->id)->get();
+      // dd( $attendences[0]->out_time);
+      return view('backend.pages.attendence.attendencelist',compact('attendences'))->with('data', $attendences);
+      
     }
 
   
@@ -25,19 +31,25 @@ class AttendenceController extends Controller
 
     }
     public function checkin(){
-      $isAttendence = Attendence::whereDate("date", now())->where("user_id",1)->first();
-      if(isset($isAttendence)){
+      $isAttendence = Attendence::whereDate("date",now())->where("user_id",auth()->user()->id)->first();
+
+     
+      if($isAttendence){
         notify()->warning("Already Checkedin");
         return redirect()->back();
       }
       Attendence::create([
         'in_time'=>now(),
-        'date'=>now()->toDateString(),
+        'date'=>date('Y-m-d'),
+        'user_id'=>auth()->user()->id
       ]);
+      notify()->success("Checkedin done");
       return redirect()->back();
     }
     public function checkout(Request $request){
-      $attendence = Attendence::whereDate("date",now())->where("user_id",1)->first();
+      $attendence = Attendence::whereDate("date",now())->where('user_id',auth()->user()->id)->first();
+
+
       if(isset($attendence->out_time)){
         notify()->warning("Already Checked Out");
         return redirect()->back();
@@ -47,4 +59,5 @@ class AttendenceController extends Controller
       ]);
       return redirect()->back();
     }
+    
 }

@@ -54,11 +54,15 @@ Route::get('/salary/structure',[SalaryStructureController::class,'create'])->nam
 Route::post('/salaryStructure/store',[SalaryStructureController::class,'store'])->name('salaryStructure.store');
 //for payroll
 Route::get('/payroll',[PayrollController::class,'payroll'])->name('payroll.list');
+Route::get('/payroll/create',[PayrollController::class,'create'])->name('payroll.create');
+Route::post('/payroll/store',[PayrollController::class,'store'])->name('payroll.store');
 
 //for leaveBalance
 
 Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name('leaveBalance.list');
 Route::get('/leaveBalance/create',[LeaveBalanceController::class,'create'])->name('leavebalance.create');
+Route::post('/leaveBalance/store',[LeaveBalanceController::class,'store'])->name('leavebalance.store');
+
 
 //for leavetype
 Route::get('/leaveType',[LeaveTypeController::class,'leaveType'])->name('leaveType.list');
@@ -68,8 +72,12 @@ Route::post('/leaveType/store',[LeaveTypeController::class,'store'])->name('leav
 
 
 
-//for leave
+//for leave application
 Route::get('/leave',[LeaveController::class,'leave'])->name('leave.list');
+Route::get('leave/create',[LeaveController::class,'create'])->name('leave.create');
+Route::post('leave/store',[LeaveController::class,'store'])->name('leave.store');
+//for search
+//Route::get('/employee-search',[HomeController::class,'employeesearch'])->name('employee.search');
 
 });
 
