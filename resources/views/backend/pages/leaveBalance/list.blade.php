@@ -1,16 +1,20 @@
 @extends('master')
 @section('content')
+
 <div class="row">
-   <div class='col-md-3'></div>
-   <div class='col-md-6'>
+   <div class='col-md-2'></div>
+   <div class='col-md-8'>
+
+<h1>Leave Balance</h1>
+
 <table class="table table-striped">
-<a href="{{route('leavebalance.create')}}" class="btn btn-primary my-2">Add new</a>
 
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Employee</th>
-      <th scope="col">Leave Type</th>
+      <th scope="col">LeaveType</th>
+
       <th scope="col">Balance</th>
       <th scope="col">Status</th>
 
@@ -18,17 +22,14 @@
 </tr>
   </thead>
   <tbody>
-    @foreach($leavebalances as $data)
+    @foreach($leavebalances as $key=>$data)
     <tr>
-      <th scope="row">{{$data->id}}</th>
-      <td>{{$data->user->name}}</td>
+      <th scope="row">{{$key+1}}</th>
+      <td>{{$data->user?->name}}</td>
       <td>{{$data->leavetype->name}}</td>
       <td>{{$data->balance}}</td>
       <td>{{$data->status}}</td>
-
-
-
-    </tr>
+   </tr>
     @endforeach
     
   </tbody>

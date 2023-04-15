@@ -31,6 +31,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
 
         $fileName='';
         if($request->hasFile('employee_image'))
@@ -47,6 +48,7 @@ class UserController extends Controller
              'name' => $request->name,
              'number' => $request->number,
              'email' => $request->email,
+             'role'=>$request->role,
              'password' =>bcrypt($request->password),
              'designation_id' => $request->designation_id,
              'department_id' => $request->department_id,
@@ -55,8 +57,10 @@ class UserController extends Controller
              'image'=>$fileName
  
          ]); 
+        
  
          $leaveType=Leavetype::all();
+         
          foreach($leaveType as $lt)
          {
              LeaveBalance::create([
@@ -66,13 +70,15 @@ class UserController extends Controller
                  'status'=>'active'
              ]);
          }
+         toastr()->success('Data has been saved successfully!', 'Congrats');
          DB::commit();
 
        }catch(Throwable $e){
             DB::rollBack();
+            toastr()->error($e->getMessage(), 'Error');
             return redirect()->back();
        }
-      
+      //dd($user->all());
 
         return redirect()->route('employee.list');
     }
@@ -80,8 +86,10 @@ class UserController extends Controller
     public function view($id)
     {
         $employees = User::find($id);
+        $designations = Designation::find($id);
 
-        return view('backend.pages.employee.view', compact('employees'));
+
+        return view('backend.pages.employee.view', compact('employees','designations'));
     }
     public function delete($id)
     {

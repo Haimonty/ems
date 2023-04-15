@@ -12,6 +12,13 @@
                <input name="name" placeholder="Enter Employee Name" type="text" class="form-control">
                </div>
                <div>
+                   <label for="">role</label>
+                   <select name="role" id="" class="form-control">
+                       <option value="admin">Admin</option>
+                       <option value="employee">Employee</option>
+                   </select>
+               </div>
+               <div>
                <label for="">Enter Employee Email:</label>
                <input name="email" placeholder="Enter employee email" type="email" class="form-control">
                </div>

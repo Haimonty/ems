@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('leave_balances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('leavetype_id');
+            $table->integer('leavetype_id');
             $table->integer('balance')->nullable();
             $table->string('status');
             $table->rememberToken();

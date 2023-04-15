@@ -35,7 +35,7 @@ class AttendenceController extends Controller
 
      
       if($isAttendence){
-        notify()->warning("Already Checkedin");
+        toastr()->error('already checked in');
         return redirect()->back();
       }
       Attendence::create([
@@ -43,7 +43,7 @@ class AttendenceController extends Controller
         'date'=>date('Y-m-d'),
         'user_id'=>auth()->user()->id
       ]);
-      notify()->success("Checkedin done");
+      toastr()->success("Checkedin done");
       return redirect()->back();
     }
     public function checkout(Request $request){
@@ -51,7 +51,7 @@ class AttendenceController extends Controller
 
 
       if(isset($attendence->out_time)){
-        notify()->warning("Already Checked Out");
+        toastr()->error('already checked out');
         return redirect()->back();
       }
       $attendence->update([

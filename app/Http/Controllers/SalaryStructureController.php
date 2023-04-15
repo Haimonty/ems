@@ -38,5 +38,16 @@ class SalaryStructureController extends Controller
 
     return redirect()->route('salaryStructure.list');
    }
+   public function view($id)
+    {
+      $salary_structures =Salary_structure::find($id);
+      return view('backend.pages.salaryStructure.view',compact('salary_structures'));
+    }
+    public function delete($id)
+    {
+        Salary_structure::find($id)->delete();
+
+        return redirect()->back();
+    }
         
 }

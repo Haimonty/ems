@@ -6,7 +6,7 @@
 <table class="table table-striped">
   <thead>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 my-2">
     <a href="{{route('attendence.checkin')}}" class="btn btn-primary my-2,">Check In</a>
     </div>
     <div class="col-md-4">
@@ -31,6 +31,7 @@
       <td>{{$data->in_time}}</td>
       <td>{{$data->out_time}}</td>
       <td>{{$data->date}}</td>
+      
       <td>{{$data->status}}</td>
       @if(isset($data->out_time))
 

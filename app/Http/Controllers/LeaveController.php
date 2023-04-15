@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Leave;
 use App\Models\LeaveBalance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LeaveController extends Controller
 {
@@ -26,10 +27,13 @@ class LeaveController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-        'fromdate'=>'required',
-        'todate'=>'required|after:fromdate',
+        
+        $validation = Validator::make($request->all(),[
+            'fromdate'=>'required|date',
+            'todate'=>'required|date|after_or_equal:fromdate',
         ]);
+
+       
         
         $fdate=$request->fromdate;
         $tdate=$request->todate;
@@ -38,12 +42,11 @@ class LeaveController extends Controller
         $datetime2 = new DateTime($tdate);
     
         $days = $datetime2->diff($datetime1)->format('%a');
-
+        
         //check employee has balance
         $leaveBalance=LeaveBalance::where('user_id',$request->user_id)
         ->where('leavetype_id',$request->leavetype_id)->first();
-        
-        if($leaveBalance->balance<=$days)
+        if($leaveBalance && $leaveBalance->balance >= $days)
 
         {
             //dd($request->all());
@@ -65,6 +68,8 @@ class LeaveController extends Controller
             return redirect()->route('leave.list');
         }
     //  message: insufficiant balance
+    toastr()->error('insufficient balance');
+
       
         return redirect()->route('leave.list');
     }

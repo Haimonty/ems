@@ -4,7 +4,11 @@
 <div class="row">
   <div class='col-md-3'></div>
      <div class='col-md-6'>
-        <table class="table ">
+        
+                <h1>Salary Structure List</h1>
+                
+        </div>
+        <table class="table table-striped">
         <a href="{{route('salaryStructure.create')}}" class="btn btn-primary">Add new</a>
  
 
@@ -18,6 +22,10 @@
         <th scope="col">Mobile Bill</th>
         <th scope="col">Special</th>
         <th scope="col">Bonus</th>
+        <th scope="col">Action</th>
+
+
+        
 
         </tr>
         </thead>
@@ -32,7 +40,10 @@
         <td>{{$data->mobile_bill}}</td>
         <td>{{$data->special}}</td>
         <td>{{$data->bonus}}</td>
-
+        <td>
+        <a href="{{route('salaryStructure.view',$data->id)}}"class="btn btn-success">Veiw</a>
+      <a href="{{route('salaryStructure.delete',$data->id)}}"class="btn btn-danger">Delete</a>   
+        </td>
 
 </tr>
 @endforeach

@@ -26,5 +26,16 @@ class DepartmentController extends Controller
         ]);
         return redirect()->route('department.list');
     }
+    public function view($id)
+    {
+      $departments = Department::find($id);
+      return view('backend.pages.department.view',compact('departments'));
+    }
+    public function delete($id)
+    {
+        Department::find($id)->delete();
+
+        return redirect()->back();
+    }
 
 }

@@ -27,5 +27,16 @@ public function store(Request $request)
   ]);
   return redirect()->route('designation.list');
 }
+public function view($id)
+    {
+      $designations = Designation::find($id);
+      return view('backend.pages.designation.view',compact('designations'));
+    }
+    public function delete($id)
+    {
+        Designation::find($id)->delete();
+
+        return redirect()->back();
+    }
 
 }

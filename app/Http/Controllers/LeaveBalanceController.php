@@ -16,7 +16,7 @@ class LeaveBalanceController extends Controller
     }
     public function create()
     {
-        $users=User::all();
+        $users=User::with('leavetype')->where('user_id',auth()->user()->id)->get();
         $leavetypes=Leavetype::all();
 
         return view('backend.pages.leaveBalance.create',compact('users','leavetypes'));
@@ -25,7 +25,6 @@ class LeaveBalanceController extends Controller
     {
         LeaveBalance::create([
             'user_id'=>$request->user_id,
-            'leavetype_id'=>$request->leavetype_id,
             'balance'=>$request->balance,
             'status'=>$request->status,
 

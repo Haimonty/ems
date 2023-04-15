@@ -18,7 +18,8 @@ class UserTableSeeder extends Seeder
             'name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('12345'),
-            "status" => "active" 
+            "status" => "active",
+            "role"=>'admin' 
         ]
         ); 
         

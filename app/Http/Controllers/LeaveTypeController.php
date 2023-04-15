@@ -28,4 +28,15 @@ class LeaveTypeController extends Controller
       ]); 
       return redirect()->route('leaveType.list');
     }
+    public function view($id)
+    {
+      $leavetypes =LeaveType::find($id);
+      return view('backend.pages.leaveType.view',compact('leavetypes'));
+    }
+    public function delete($id)
+    {
+        LeaveType::find($id)->delete();
+
+        return redirect()->back();
+    }
 }

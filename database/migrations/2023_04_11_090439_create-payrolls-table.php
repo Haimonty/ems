@@ -17,8 +17,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('salary_structure_id')->constrained('salary_structures');
+            $table->integer('totalSalary');
+            $table->integer('totalworkinghour');
+            $table->integer('per_hour_rate');
+
             $table->string('status');
             $table->string('month');
+            //$table->string('salary');
             $table->rememberToken();
             $table->timestamps();
         }); 
