@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('salary_structure_id')->constrained('salary_structures');
+            $table->foreignId('salary_structure_id');
             $table->integer('totalSalary');
             $table->integer('totalworkinghour');
             $table->integer('per_hour_rate');

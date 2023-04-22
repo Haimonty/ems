@@ -44,6 +44,6 @@ return redirect()->back()->with('message','invalid credentials');
     auth()->logout();
     return redirect()->route('login');
   }
-  
+    
  
 }

@@ -1,8 +1,8 @@
 @extends('master')
 @section('content')
 <div class="row">
-   <div class='col-md-3'></div>
-   <div class='col-md-6'>
+   <div class='col-md-2'></div>
+   <div class='col-md-8'>
 <table class="table table-striped">
   <a href="{{route('leave.create')}}" class="btn btn-primary my-2">Apply leave</a>
   <thead>
@@ -15,8 +15,9 @@
       <th scope="col">To Date</th>
       <th scope="col">Leave-type</th> 
       <th scope="col">Status</th> 
+      @if(auth()->user()->role=='admin')
       <th scope="col">Remarks</th> 
-
+      @endif
     </tr>
   </thead>
   <tbody>
@@ -29,7 +30,15 @@
       <td>{{$data->todate}}</td>
       <td>{{$data->leavetype->name}}</td>
       <td>{{$data->status}}</td>
-      <td>{{$data->Remarks}}</td>
+      @if(auth()->user()->role=='admin')
+
+      <td>
+      <a href="{{route('leave.approve',$data->id)}}"class="btn btn-success">Approve</a>
+      <a href="{{route('leave.reject',$data->id)}}"class="btn btn-danger">Reject</a>
+
+
+      </td>
+      @endif
    </tr>
   @endforeach
   </tbody>

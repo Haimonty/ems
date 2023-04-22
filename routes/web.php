@@ -34,6 +34,10 @@ Route:: get('/employee/create',[UserController::class,'employeeCreate']);
 Route::post('/employee/store',[UserController::class,'store'])->name('employee.store');
 Route::get('/employee/view{id}',[UserController::class,'view'])->name('employee.view');
 Route::get('/employee/delete{id}',[UserController::class,'delete'])->name('employee.delete');
+Route::get('/employee/edit{id}',[UserController::class,'edit'])->name('employee.edit');
+Route::put('/employee/update{id}',[UserController::class,'update'])->name('employee.update');
+
+
 
 //for designation
 Route::get('/designation',[DesignationController::class,'designation'])->name('designation.list');
@@ -88,6 +92,9 @@ Route::get('/leavetype/delete{id}',[DepartmentController::class,'delete'])->name
 Route::get('/leave',[LeaveController::class,'leave'])->name('leave.list');
 Route::get('leave/create',[LeaveController::class,'create'])->name('leave.create');
 Route::post('leave/store',[LeaveController::class,'store'])->name('leave.store');
+Route::get('leave/approve{id}',[LeaveController::class,'approve'])->name('leave.approve');
+Route::get('leave/reject{id}',[LeaveController::class,'reject'])->name('leave.reject');
+
 //for search
 //Route::get('/employee-search',[HomeController::class,'employeesearch'])->name('employee.search');
 

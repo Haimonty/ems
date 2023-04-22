@@ -28,13 +28,17 @@ class PayrollController extends Controller
 
     public function store(Request $request)
     {
-       
         //
-        
         $totalBasic=Salary_structure::find($request->salary_structure_id)->basic;
+        $totalmedicals=Salary_structure::find($request->salary_structure_id)->medicals;
+        $totalmobile_bill=Salary_structure::find($request->salary_structure_id)->mobile_bill;
+        $totalspecial=Salary_structure::find($request->salary_structure_id)->special;
+        $totalbonus=Salary_structure::find($request->salary_structure_id)->bonus;
+
+
 
         $totalHour=Attendence::where('user_id',$request->user_id)->whereMonth('date',$request->month)->sum('hour');
-        $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour);
+        $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour) + $totalmedicals +  $totalmobile_bill + $totalspecial +$totalbonus;
         $per_hour_rate=((int)$totalBasic /160);
 //dd($per_hour_rate);
      Payroll::create([

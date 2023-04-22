@@ -97,4 +97,42 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+    public function edit($id)
+    {
+       $employees = User::find($id);
+       $designations = Designation::all();
+       $departments = Department::all();
+       $salary_structures = Salary_structure::all();
+       return view('backend.pages.employee.edit',compact('employees','designations','departments','salary_structures'));
+    }
+    public function update(Request $request,$id)
+    {
+        
+        $fileName='';
+        if($request->hasFile('employee_image'))
+        {
+        $fileName=date('Ymdhis').'.'.$request->file('employee_image')->getClientOriginalExtension();
+
+        $request->file('employee_image')->storeAs('/uploads',$fileName);
+
+        $employees = User::find($id);
+        $employees->update([
+            'name' => $request->name,
+             'number' => $request->number,
+             'email' => $request->email,
+             'role'=>$request->role,
+             'password' =>bcrypt($request->password),
+             'designation_id' => $request->designation_id,
+             'department_id' => $request->department_id,
+             'salary_structure_id' => $request->salary_structure_id,
+             'status' => $request->status,
+             'image'=>$fileName
+
+        ]);
+
+       
+
+    }
+    return to_route('employee.list');
+}
 }

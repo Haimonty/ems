@@ -24,8 +24,8 @@
 @foreach($payrolls as $data)
     <tr>
       <th scope="row">{{$data->id}}</th>
-      <td>{{$data->user->name}}</td>
-      <td>{{$data->salarystructure->salaryclass}} </td>
+      <td>{{$data->user?->name}}</td>
+      <td>{{$data->salarystructure?->salaryclass}} </td>
       <td>{{$data->totalSalary}}</td>
       <td>{{$data->totalworkinghour}}</td>
       <td>{{$data->per_hour_rate}}</td>

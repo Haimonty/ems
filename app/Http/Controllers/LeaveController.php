@@ -27,16 +27,19 @@ class LeaveController extends Controller
     }
     public function store(Request $request)
     {
-        
-        $validation = Validator::make($request->all(),[
-            'fromdate'=>'required|date',
+        $validator = Validator::make($request->all(),[
+            'fromdate'=>'required|after:now',
             'todate'=>'required|date|after_or_equal:fromdate',
         ]);
-
-       
-        
-        $fdate=$request->fromdate;
+if($validator->fails())
+{
+    toastr()->error('Date is invalid!');
+    return redirect()->back();
+}
+       $fdate=$request->fromdate;
         $tdate=$request->todate;
+         
+       
     
         $datetime1 = new DateTime($fdate);
         $datetime2 = new DateTime($tdate);
@@ -59,11 +62,12 @@ class LeaveController extends Controller
                 'status'=>'pending',
                 'remarks'=>$request->remarks,
             ]);
+
     
             // remove from leave balance
             $leaveBalance->decrement('balance',$days);
             //message : leave applied success
-            toastr()->success('Data has been saved successfully!', 'Congrats');
+            toastr()->success('Leave Applied Successfully!', 'Congrats');
 
             return redirect()->route('leave.list');
         }
@@ -72,5 +76,36 @@ class LeaveController extends Controller
 
       
         return redirect()->route('leave.list');
+    }
+    public function approve($id)
+    {
+      $leave = Leave::findOrFail($id);
+      $leave->status='approved';
+      $leave->save();
+      toastr()->success('leave has been approved');
+    return redirect()->route('leave.list');
+    }
+    public function reject($id)
+    {
+        $leave = Leave::findOrFail($id);
+        $leave->status='declined';
+        $leave->save();
+
+        if(isset($leave->status->declined))
+        {
+        $datetime1 = new DateTime($leave->formdate);
+        $datetime2 = new DateTime($leave->todate);
+    
+        $days = $datetime2->diff($datetime1)->format('%a');
+        
+        //leave restore into balance
+        $balance=LeaveBalance::where('leavetype_id',$leave->leavetype_id)
+        ->where('user_id',$leave->user_id)->first();
+        
+        $balance->increment('balance',$days);
+        toastr()->error('leave has been rejected');
+        }
+        return redirect()->route('leave.list');
+        
     }
 }

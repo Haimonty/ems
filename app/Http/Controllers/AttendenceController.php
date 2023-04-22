@@ -31,8 +31,9 @@ class AttendenceController extends Controller
 
     }
     public function checkin(){
-      $isAttendence = Attendence::whereDate("date",now())->where("user_id",auth()->user()->id)->first();
 
+      $isAttendence = Attendence::whereDate("date",now())->where("user_id",auth()->user()->id)->first();
+//dd($isAttendence);
      
       if($isAttendence){
         toastr()->error('already checked in');
@@ -42,6 +43,7 @@ class AttendenceController extends Controller
         'in_time'=>now(),
         'date'=>date('Y-m-d'),
         'user_id'=>auth()->user()->id
+
       ]);
       toastr()->success("Checkedin done");
       return redirect()->back();
@@ -54,10 +56,19 @@ class AttendenceController extends Controller
         toastr()->error('already checked out');
         return redirect()->back();
       }
+
+      $in_time = now()->parse($attendence->in_time);
+      $out_time = now()->parse($attendence->out_time);
+    
       $attendence->update([
-        'out_time'=>now()
+        'out_time'=>now(),
+        'hour'=> $out_time->diffInHours($in_time)
       ]);
       return redirect()->back();
+      
     }
+
+    
+   
     
 }
