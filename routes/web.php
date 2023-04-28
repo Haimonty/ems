@@ -60,6 +60,11 @@ Route::post('/attendence/store',[AttendenceController::class,'store'])->name('at
 
 Route::get('/attendence/checkin',[AttendenceController::class,'checkin'])->name('attendence.checkin');
 Route::get('/attendence/checkout',[AttendenceController::class,'checkout'])->name('attendence.checkout');
+//attendence report
+Route::get('/attendence/dailyreport',[AttendenceController::class,'dailyreport'])->name('attendence.dailyreport');
+
+Route::get('/attendence/report',[AttendenceController::class,'report'])->name('attendence.report');
+Route::get('/attendence/report/search',[AttendenceController::class,'reportSearch'])->name('attendence.report.search');
 //for salary structure
 Route::get('/salaryStructure',[SalaryStructureController::class,'salaryStructure'])->name('salaryStructure.list');
 Route::get('/salary/structure',[SalaryStructureController::class,'create'])->name('salaryStructure.create');

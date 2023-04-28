@@ -64,7 +64,7 @@
                       <h6 class="mb-0">Salary_structure</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{$employees->salaryclass}}
+                      {{$employees->salary_structure->salaryclass}}
                     </div>
                   </div>
                   <hr>

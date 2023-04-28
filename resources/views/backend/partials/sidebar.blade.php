@@ -32,6 +32,10 @@
                                 Attendence
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
+                            </a> <a class="nav-link" href="{{route('attendence.report')}}">
+                                <div class="sb-nav-link-icon"><i class="fa-thin fa-house-person-leave"></i></div>
+                                Attendence Report 
+                            </a>
                             @if(auth()->user()->role=='admin')
                             <a class="nav-link" href="{{route('salaryStructure.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-money-bill-trend-up"></i></div>
@@ -59,6 +63,8 @@
                                 <div class="sb-nav-link-icon"><i class="fa-thin fa-house-person-leave"></i></div>
                                 Apply Leave 
                             </a>
+                            
+                           
                            
                         </div>
                     </div>

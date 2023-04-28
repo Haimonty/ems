@@ -8,7 +8,9 @@
                 <h1>Salary Structure List</h1>
                 
         </div>
+
         <table class="table table-striped">
+          
         <a href="{{route('salaryStructure.create')}}" class="btn btn-primary">Add new</a>
  
 

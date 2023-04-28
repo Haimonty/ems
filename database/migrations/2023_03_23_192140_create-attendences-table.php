@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('in_time');
             $table->time('out_time')->nullable();
             $table->date('date');
+            $table->string('status')->nullable();
             $table->time('hour')->nullable();
             
             

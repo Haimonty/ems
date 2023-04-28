@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Attendence;
 use Carbon\Carbon;
-// use Carbon\Carbon;
+use App\Models\Attendence;
 use Illuminate\Http\Request;
+// use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Validator;
+
+
  use Illuminate\Contracts\Auth\Factory;
  use Illuminate\Contracts\Auth\Guard;
 
@@ -26,6 +29,7 @@ class AttendenceController extends Controller
       'in_time'=>$request->in_time,
       'out_time'=>$request->out_time,
       'date'=>$request->date,
+      'status'=>'absent',
       ]);
       return redirect()->route('attendence.list');
 
@@ -42,6 +46,7 @@ class AttendenceController extends Controller
       Attendence::create([
         'in_time'=>now(),
         'date'=>date('Y-m-d'),
+        'status'=>'Present',
         'user_id'=>auth()->user()->id
 
       ]);
@@ -65,7 +70,42 @@ class AttendenceController extends Controller
         'hour'=> $out_time->diffInHours($in_time)
       ]);
       return redirect()->back();
+// attendence status
       
+     
+    }
+    //attendence report 
+    
+    public function report()
+    {
+      return view('backend.pages.attendence.report');
+    }
+    public function reportSearch(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'date'    => 'required|date',
+            
+        ]);
+
+        if($validator->fails())
+        {
+
+            toastr()->error('Date is required');
+            return redirect()->back();
+        }
+
+
+
+       $date=$request->date;
+       
+
+
+//       $status=$request->status;
+
+        $attendence=Attendence::whereDate('created_at', $date)->get();
+        return view('backend.pages.attendence.report',compact('attendence'));
+
     }
 
     
