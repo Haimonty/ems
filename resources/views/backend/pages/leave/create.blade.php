@@ -9,7 +9,7 @@
             <h1>Leave Application Form</h1>
                <div>
                <label for="">Employee Name</label>
-               <select name="user_id" id="" class="form-control">
+               <select required name="user_id" id="" class="form-control">
                 @foreach($users as $data)
                        <option value="{{$data->id}}">{{$data->name}}</option>
                        @endforeach
@@ -21,11 +21,11 @@
                </div>
                <div>
                <label for="Select From Date">From Date</label>
-               <input type="date" id="" name="fromdate" class="form-control">
+               <input type="date" id=""required name="fromdate" class="form-control">
                </div>
                <div>
                <label for="Select To Date">To Date</label>
-               <input type="date" id="" name="todate" class="form-control">
+               <input type="date" id="" required name="todate" class="form-control">
                </div>
                <div>
                    <label for="">Select Leavetype</label>

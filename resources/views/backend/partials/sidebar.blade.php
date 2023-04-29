@@ -59,9 +59,12 @@
                                 Leave type
                             </a>
                             @endif
+                            @php 
+                                $leave=App\Models\Leave::where('status','pending')->count();
+                            @endphp
                             </a> <a class="nav-link" href="{{route('leave.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-thin fa-house-person-leave"></i></div>
-                                Apply Leave 
+                                Apply Leave ({{$leave}})
                             </a>
                             
                            

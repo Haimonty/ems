@@ -31,12 +31,14 @@ class LeaveController extends Controller
             'fromdate'=>'required|after:now',
             'todate'=>'required|date|after_or_equal:fromdate',
         ]);
-if($validator->fails())
-{
-    toastr()->error('Date is invalid!');
-    return redirect()->back();
-}
-       $fdate=$request->fromdate;
+
+        if($validator->fails())
+        {
+            toastr()->error('Date is invalid!');
+            return redirect()->back();
+        }
+
+        $fdate=$request->fromdate;
         $tdate=$request->todate;
          
        
@@ -49,7 +51,23 @@ if($validator->fails())
         //check employee has balance
         $leaveBalance=LeaveBalance::where('user_id',$request->user_id)
         ->where('leavetype_id',$request->leavetype_id)->first();
-        if($leaveBalance && $leaveBalance->balance >= $days)
+
+        //check leave exist
+         $leaveExistFromDate=Leave::whereDate('fromDate','>=',$datetime1)->whereDate('todate','<=',$datetime1)->where('user_id',auth()->user()->id)->first();
+         $leaveExistToDate=Leave::whereDate('fromDate','>=',$datetime2)->whereDate('todate','<=',$datetime2)->where('user_id',auth()->user()->id)->first();
+
+
+
+
+       
+if($leaveExistFromDate OR $leaveExistToDate)
+{
+    toastr()->error('You have already leave on those date', 'Error');
+
+    return redirect()->back();
+}
+
+        if(/*$leaveBalance && */ $leaveBalance->balance >= $days)
 
         {
             //dd($request->all());

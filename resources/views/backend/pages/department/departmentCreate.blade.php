@@ -8,7 +8,7 @@
            <div class="col-md-6">
                <div>
                <label for="">Enter Department Name:</label>
-               <input name="name" placeholder="Enter category name" type="text" class="form-control">
+               <input required name="name" placeholder="Enter category name" type="text" class="form-control">
                </div>
 
                <div>

@@ -9,30 +9,30 @@
            <div class="col-md-8">
                <div>
                <label for="">Enter Employee Name:</label>
-               <input name="name" placeholder="Enter Employee Name" type="text" class="form-control">
+               <input required name="name" placeholder="Enter Employee Name" type="text" class="form-control">
                </div>
                <div>
                    <label for="">role</label>
-                   <select name="role" id="" class="form-control">
+                   <select required name="role" id="" class="form-control">
                        <option value="admin">Admin</option>
                        <option value="employee">Employee</option>
                    </select>
                </div>
                <div>
                <label for="">Enter Employee Email:</label>
-               <input name="email" placeholder="Enter employee email" type="email" class="form-control">
+               <input required name="email" placeholder="Enter employee email" type="email" class="form-control">
                </div>
                
                <div>
                <label for="">Enter Employee password:</label>
-               <input name="password" placeholder="Enter employee password" type="password" class="form-control">
+               <input required name="password" placeholder="Enter employee password" type="password" class="form-control">
                </div>
                
 
 
                <div> 
                <label for="">Enter Employee Phone Number:</label>
-               <input name="number" placeholder="Enter category phone number" type="number" class="form-control">
+               <input required name="number" placeholder="Enter category phone number" type="number" class="form-control">
                </div>
                
              

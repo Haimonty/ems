@@ -7,11 +7,11 @@
            <div class="col-md-6">
                <div>
                <label for="">Name:</label>
-               <input name="name" placeholder="Enter name" type="text" class="form-control">
+               <input required name="name" placeholder="Enter name" type="text" class="form-control">
                </div>
                <div>
                <label for="">Days:</label>
-               <input name="days" placeholder="Enter days" type="number" class="form-control">
+               <input required name="days" placeholder="Enter days" type="number" class="form-control">
                </div>
                <div>
                    <label for="">Write description</label>

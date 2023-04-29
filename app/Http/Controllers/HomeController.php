@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    public function home(){
-     $employees=User::all()->count();
-     $departments=Department::all()->count();
-     $designations=Designation::all()->count();
+  public function home()
+  {
+    $employees = User::all()->count();
+    $departments = Department::all()->count();
+    $designations = Designation::all()->count();
 
-        return view('dashboard',compact('employees','departments','designations'));
-    }
+    return view('dashboard', compact('employees', 'departments', 'designations'));
+  }
   public function login()
   {
     return view('backend.pages.login');
@@ -31,19 +32,17 @@ class HomeController extends Controller
 
   public function dologin(Request $request)
   {
-
     // $credentials=$request->except('-token');
-$credentials=$request->only(['email','password']);
-if(Auth::attempt($credentials)){
-  return redirect()->route('home');
-}
-return redirect()->back()->with('message','invalid credentials');
+
+    $credentials = $request->only(['email', 'password']);
+    if (Auth::attempt($credentials)) {
+      return redirect()->route('home');
+    }
+    return redirect()->back()->with('message', 'invalid credentials');
   }
   public function logout()
   {
     auth()->logout();
     return redirect()->route('login');
   }
-    
- 
 }

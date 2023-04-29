@@ -11,13 +11,28 @@ use App\Models\Leavetype;
 use App\Models\Salary_structure;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 class UserController extends Controller
 {
     public function employee()
     {
-        $employees = User::with("designation")->paginate(5);
+        if(\request()->from_date){
+
+            $validate=Validator::make(\request()->all(),[
+                'to_date'=>'after:from_date'
+             ]);
+             if($validate->fails())
+             {
+                 toastr()->error('To date should greater than from date.');
+                 return redirect()->route('employee.list');
+             }
+        $employees = User::with("designation")->whereBetween('created_at',[\request()->from_date,\request()->to_date])->paginate(4);
+        }
+        else{
+            $employees=User::with('designation')->paginate(4);
+        }
         return view('backend.pages.employee.employeelist', compact('employees'));
     }
 
@@ -32,6 +47,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        $validate=Validator::make($request->all(),[
+            'name' =>'required',
+           'email' =>'required',
+           'password' =>'required',
+           'number' =>'required',
+        ]);
+        if($validate->fails())
+        {
+            toastr()->error($validate->getMessageBag());
+//            notify()->error("Somethings went wrong.");
+            return redirect()->back();
+        }
 
         $fileName='';
         if($request->hasFile('employee_image'))

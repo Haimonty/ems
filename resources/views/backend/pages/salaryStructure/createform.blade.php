@@ -8,7 +8,7 @@
            <div class="col-md-6">
                 <div>
                <label for="">Salary Class</label>
-               <input name="salaryclass" placeholder="Enter Salary class" type="txt" class="form-control">
+               <input required name="salaryclass" placeholder="Enter Salary class" type="txt" class="form-control">
                </div>
 
                <div>
