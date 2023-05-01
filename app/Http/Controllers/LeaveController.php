@@ -16,6 +16,9 @@ class LeaveController extends Controller
     public function leave()
     {
         $leaves=Leave::with("user","leavetype")->get();
+        if(auth()->user()->role == "employee"){
+        $leaves=Leave::where("user_id",auth()->user()->id)->with("user","leavetype")->get();
+        }
        return view('backend.pages.leave.list',compact('leaves'));
     }
     public function create()
@@ -53,9 +56,8 @@ class LeaveController extends Controller
         ->where('leavetype_id',$request->leavetype_id)->first();
 
         //check leave exist
-         $leaveExistFromDate=Leave::whereDate('fromDate','>=',$datetime1)->whereDate('todate','<=',$datetime1)->where('user_id',auth()->user()->id)->first();
-         $leaveExistToDate=Leave::whereDate('fromDate','>=',$datetime2)->whereDate('todate','<=',$datetime2)->where('user_id',auth()->user()->id)->first();
-
+        $leaveExistFromDate=Leave::whereDate('fromdate','>=',$datetime1)->whereDate('fromdate','<=',$datetime2)->where('user_id',auth()->user()->id)->first();
+        $leaveExistToDate=Leave::whereDate('todate','>=',$datetime1)->whereDate('todate','<=',$datetime2)->where('user_id',auth()->user()->id)->first();
 
 
 
@@ -78,7 +80,6 @@ if($leaveExistFromDate OR $leaveExistToDate)
                 'todate'=>$request->todate,
                 'leavetype_id'=>$request->leavetype_id,
                 'status'=>'pending',
-                'remarks'=>$request->remarks,
             ]);
 
     
@@ -114,7 +115,7 @@ if($leaveExistFromDate OR $leaveExistToDate)
         $datetime1 = new DateTime($leave->formdate);
         $datetime2 = new DateTime($leave->todate);
     
-        $days = $datetime2->diff($datetime1)->format('%a');
+        $days =( $datetime2->diff($datetime1))->format('%a');
         
         //leave restore into balance
         $balance=LeaveBalance::where('leavetype_id',$leave->leavetype_id)

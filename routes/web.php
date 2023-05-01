@@ -17,6 +17,7 @@ use App\Models\Salary_structure;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/',[HomeController::class,'land'])->name('land');
 
 
 Route::get('/login',[HomeController::class,'login'])->name('login');
@@ -25,9 +26,29 @@ Route::post('/do-login',[HomeController::class,'doLogin'])->name('do.login');
 //for employee
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home',[HomeController::class,'home'])->name('home'); 
-    Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
+    //leave balance
+Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name('leaveBalance.list');
+Route::get('/leaveBalance/create',[LeaveBalanceController::class,'create'])->name('leavebalance.create');
+Route::post('/leaveBalance/store',[LeaveBalanceController::class,'store'])->name('leavebalance.store');
+Route::get('/attendence',[AttendenceController::class,'attendence'])->name('attendence.list');
+//attendence 
+Route::post('/attendence/store',[AttendenceController::class,'store'])->name('attendence.store');
+Route::get('/attendence/checkin',[AttendenceController::class,'checkin'])->name('attendence.checkin');
+Route::get('/attendence/checkout',[AttendenceController::class,'checkout'])->name('attendence.checkout');
 
+//attendence report
+Route::get('/attendence/dailyreport',[AttendenceController::class,'dailyreport'])->name('attendence.dailyreport');
 
+Route::get('/attendence/report',[AttendenceController::class,'report'])->name('attendence.report');
+Route::get('/attendence/report/search',[AttendenceController::class,'reportSearch'])->name('attendence.report.search');
+//leave application
+Route::get('/leave',[LeaveController::class,'leave'])->name('leave.list');
+Route::get('leave/create',[LeaveController::class,'create'])->name('leave.create');
+Route::post('leave/store',[LeaveController::class,'store'])->name('leave.store');
+//checkAdmin
+Route::group(['middleware'=>'checkAdmin'],function(){
+Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
+Route::get('/home/profile',[HomeController::class,'profile'])->name('home.profile');
 
 Route::get('/employee',[UserController::class, 'employee'])->name('employee.list'); 
 Route:: get('/employee/create',[UserController::class,'employeeCreate']);
@@ -54,17 +75,7 @@ Route::get('/department/delete{id}',[DepartmentController::class,'delete'])->nam
 
 //for attendence
 
-Route::get('/attendence',[AttendenceController::class,'attendence'])->name('attendence.list');
-
-Route::post('/attendence/store',[AttendenceController::class,'store'])->name('attendence.store');
-
-Route::get('/attendence/checkin',[AttendenceController::class,'checkin'])->name('attendence.checkin');
-Route::get('/attendence/checkout',[AttendenceController::class,'checkout'])->name('attendence.checkout');
-//attendence report
-Route::get('/attendence/dailyreport',[AttendenceController::class,'dailyreport'])->name('attendence.dailyreport');
-
-Route::get('/attendence/report',[AttendenceController::class,'report'])->name('attendence.report');
-Route::get('/attendence/report/search',[AttendenceController::class,'reportSearch'])->name('attendence.report.search');
+;
 //for salary structure
 Route::get('/salaryStructure',[SalaryStructureController::class,'salaryStructure'])->name('salaryStructure.list');
 Route::get('/salary/structure',[SalaryStructureController::class,'create'])->name('salaryStructure.create');
@@ -78,9 +89,6 @@ Route::post('/payroll/store',[PayrollController::class,'store'])->name('payroll.
 
 //for leaveBalance
 
-Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name('leaveBalance.list');
-Route::get('/leaveBalance/create',[LeaveBalanceController::class,'create'])->name('leavebalance.create');
-Route::post('/leaveBalance/store',[LeaveBalanceController::class,'store'])->name('leavebalance.store');
 
 
 //for leavetype
@@ -94,14 +102,12 @@ Route::get('/leavetype/delete{id}',[DepartmentController::class,'delete'])->name
 
 
 //for leave application
-Route::get('/leave',[LeaveController::class,'leave'])->name('leave.list');
-Route::get('leave/create',[LeaveController::class,'create'])->name('leave.create');
-Route::post('leave/store',[LeaveController::class,'store'])->name('leave.store');
+
 Route::get('leave/approve{id}',[LeaveController::class,'approve'])->name('leave.approve');
 Route::get('leave/reject{id}',[LeaveController::class,'reject'])->name('leave.reject');
 
 //for search
 //Route::get('/employee-search',[HomeController::class,'employeesearch'])->name('employee.search');
-
+    });
 });
 

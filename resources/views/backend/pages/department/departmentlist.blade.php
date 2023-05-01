@@ -6,23 +6,21 @@
 <table class="table">
 
   <thead>
-  <a href="{{url('/department/create')}}" class="btn btn-primary">Add new</a>
+  <a href="{{url('/department/create')}}" class="btn btn-primary my-2">Add new</a>
 
   
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
       
     </tr>
   </thead>
   <tbody>
-    @foreach($departments as $data)
+    @foreach($departments as $key=>$data)
     <tr>
-      <th scope="row">{{$data->id}}</th>
+      <th scope="row">{{$key+1}}</th>
       <td>{{$data->name}}</td>
-      <td>{{$data->status}}</td>
       <td>
       <a href="{{route('department.view',$data->id)}}"class="btn btn-success">Veiw</a>
       <a href="{{route('department.delete',$data->id)}}"class="btn btn-danger">Delete</a>

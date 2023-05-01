@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('leavetype_id');
             $table->integer('balance')->nullable();
-            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });

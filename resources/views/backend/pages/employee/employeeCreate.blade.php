@@ -40,14 +40,9 @@
                    <label for="">Upload Image</label>
                    <input name="employee_image" placeholder="Upload  Emage " type="file" class="form-control">               </div>
 
-               <div>
-                   <label for="">Write description</label>
-                   <textarea name="description" placeholder="Enter description" class="form-control"></textarea>
-
-               </div>
 
                <div>
-               <label for="designation_id">Designation Id</label>
+               <label for="designation_id">Designation Name</label>
                   <select name="designation_id" id=""class="form-control"> 
                     @foreach($designations as $data)
                     <option value="{{$data->id}}">{{$data->name}}</option>
@@ -56,7 +51,7 @@
                   </select>
                </div>
                <div>
-               <label for="department_id">Department Id</label>
+               <label for="department_id">Department Name</label>
                   <select name="department_id" id=""class="form-control"> 
                     @foreach($departments as $data)
                     <option value="{{$data->id}}">{{$data->name}}</option>
@@ -65,20 +60,14 @@
                   </select>
                </div>
                <div>
-               <label for="salary_structure_id">salary_structure Id</label>
+               <label for="salary_structure_id">salary_structure Class</label>
                <select name="salary_structure_id" id=""class="form-control"> 
                @foreach($salary_structures as $data)
                <option value="{{$data->id}}">{{$data->salaryclass}}</option>
                @endforeach
               </select>
                </div>
-               <div>
-                   <label for="">Select Status</label>
-                   <select name="status" id="" class="form-control">
-                       <option value="active">Active</option>
-                       <option value="inactive">InActive</option>
-                   </select>
-               </div>
+              
 
 
                 <div>

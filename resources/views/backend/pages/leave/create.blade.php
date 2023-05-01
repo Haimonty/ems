@@ -2,19 +2,13 @@
 @section('content')
 <form action="{{route('leave.store')}}"  method='post'>
     @csrf
-   
+
            <div class="row">
            <div class="col-md-2"></div>
            <div class="col-md-6">
             <h1>Leave Application Form</h1>
-               <div>
-               <label for="">Employee Name</label>
-               <select required name="user_id" id="" class="form-control">
-                @foreach($users as $data)
-                       <option value="{{$data->id}}">{{$data->name}}</option>
-                       @endforeach
-                   </select>
-                </div>
+               <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
                <div>
                <label for="">Tittle</label>
                <input name="title" placeholder="Enter title name" type="text" class="form-control">
@@ -30,18 +24,12 @@
                <div>
                    <label for="">Select Leavetype</label>
                    <select name="leavetype_id" id="" class="form-control">
-                   @foreach($leavetypes as $data)  
+                   @foreach($leavetypes as $data)
                    <option value="{{$data->leavetype_id}}">{{$data->leavetype->name}}({{$data->leavetype->days}})</option>
-                       @endforeach  
+                       @endforeach
                    </select>
                </div>
-               <div>
-                   <label for="">Select remarks</label>
-                   <select name="remarks" id="" class="form-control">
-                       <option value="active">Active</option>
-                       <option value="inactive">InActive</option>
-                   </select>
-               </div>
+               
                 <div>
                     <button type="submit" class="btn btn-success">Create</button>
                 </div>
@@ -51,7 +39,7 @@
 
        </div>
 </div>
-    
+
 
 
 @endsection

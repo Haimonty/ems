@@ -12,6 +12,9 @@ class LeaveBalanceController extends Controller
     public function leaveBalance()
     {
         $leavebalances=LeaveBalance::with('user','leavetype')->get();
+        if(auth()->user()->role == "employee"){
+        $leavebalances=LeaveBalance::where("user_id",auth()->user()->id)->with("user","leavetype")->get();
+        }
         return view('backend.pages.leaveBalance.list',compact('leavebalances'));
     }
     public function create()
@@ -26,9 +29,6 @@ class LeaveBalanceController extends Controller
         LeaveBalance::create([
             'user_id'=>$request->user_id,
             'balance'=>$request->balance,
-            'status'=>$request->status,
-
-
         ]);
         return redirect()->route('leaveBalance.list');
 

@@ -9,9 +9,10 @@
 
   </div>
   <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table table-striped mx-2">
     <div class="col-md-6">
-      <a href="{{route('salaryStructure.create')}}" class="btn btn-primary">Add new</a>
+      <a href="{{route('salaryStructure.create')}}" class="btn btn-primary mx-2">Add New SalaryClass</a>
+      
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -20,7 +21,6 @@
           <th scope="col">Basic Salary</th>
           <th scope="col">Medical Expenses</th>
           <th scope="col">Mobile Bill</th>
-          <th scope="col">Special</th>
           <th scope="col">Bonus</th>
           <th scope="col">Action</th>
 
@@ -38,7 +38,7 @@
           <td>{{$data->basic}}</td>
           <td>{{$data->medicals}}</td>
           <td>{{$data->mobile_bill}}</td>
-          <td>{{$data->special}}</td>
+
           <td>{{$data->bonus}}</td>
           <td>
             <a href="{{route('salaryStructure.view',$data->id)}}" class="btn btn-success">Veiw</a>

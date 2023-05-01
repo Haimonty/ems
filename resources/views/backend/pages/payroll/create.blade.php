@@ -45,13 +45,7 @@
                </div>
                
                
-               <div>
-                   <label for="">Select Status</label>
-                   <select name="status" id="" class="form-control">
-                       <option value="active">Active</option>
-                       <option value="inactive">InActive</option>
-                   </select>
-               </div>
+               
 
 
                 <div>

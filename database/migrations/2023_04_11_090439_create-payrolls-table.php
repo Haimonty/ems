@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('totalworkinghour');
             $table->integer('per_hour_rate');
 
-            $table->string('status');
             $table->string('month');
             //$table->string('salary');
             $table->rememberToken();

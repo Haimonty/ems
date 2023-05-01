@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->foreignId('leavetype_id');
             $table->string('status');
-            $table->string('remarks');
             $table->rememberToken();
             $table->timestamps();
         });

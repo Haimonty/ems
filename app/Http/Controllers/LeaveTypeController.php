@@ -22,7 +22,6 @@ class LeaveTypeController extends Controller
         'name'=>$request->name,
         'days'=>$request->days,
         'description'=>$request->description,
-        'status'=>$request->status,
 
 
       ]); 

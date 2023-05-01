@@ -12,7 +12,6 @@
       <th scope="col">Name</th>
       <th scope="col">Days</th>
      <th scope="col">Description</th>
-     <th scope="col">Status</th>
      <th scope="col">Action</th>
 
     </tr>

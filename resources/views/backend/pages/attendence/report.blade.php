@@ -1,7 +1,14 @@
 @extends('master')
 
 @section('content')
-<h1>Attendence Report</h1>
+
+<div class="row ">
+  <div class='col-md-3'></div>
+  <div class='col-md-6' >
+
+    <h1>Attendence Report</h1>
+
+  </div>
 
 <form action="{{route('attendence.report.search')}}" method="get">
 

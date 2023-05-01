@@ -45,4 +45,14 @@ class HomeController extends Controller
     auth()->logout();
     return redirect()->route('login');
   }
+  public function profile()
+  {
+    $employees=User::all();
+    return view('backend.pages.profile',compact('employees'));
+  }
+  public function land()
+  {
+    return view('backend.pages.landing');
+  }
+
 }

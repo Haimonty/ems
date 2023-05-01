@@ -6,12 +6,9 @@
            <div class="col-md-6">
 <label for="name">Leave Type Name:</label>
     <input type="text" value="{{$leavetyps->name}}" readonly class="form-control">
-<label for="number">Status:</label>
-<input type="text" value="{{$leavetypes->status}}" readonly class="form-control">
 
 
-
-    <a href="{{route('leavetype.list')}}" class="btn btn-success">Back</a>
+  <a href="{{route('leavetype.list')}}" class="btn btn-success">Back</a>
     <div class="col-md-3"></div>
 
 @endsection

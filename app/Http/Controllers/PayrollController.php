@@ -28,17 +28,26 @@ class PayrollController extends Controller
 
     public function store(Request $request)
     {
-        //
-        $totalBasic=Salary_structure::find($request->salary_structure_id)->basic;
-        $totalmedicals=Salary_structure::find($request->salary_structure_id)->medicals;
-        $totalmobile_bill=Salary_structure::find($request->salary_structure_id)->mobile_bill;
-        $totalspecial=Salary_structure::find($request->salary_structure_id)->special;
-        $totalbonus=Salary_structure::find($request->salary_structure_id)->bonus;
+        //check already paid or not
+        $checkPaid=Payroll::where('user_id',$request->user_id)->where('month',$request->month)->first();
+
+        if($checkPaid)
+        {
+            toastr()->error('Already paid.');
+            return redirect()->back();
+        }
+
+
+        $salary=Salary_structure::find($request->salary_structure_id);
+        $totalBasic=$salary->basic;
+        // $totalmedicals=$salary->medicals;
+        // $totalmobile_bill=$salary->mobile_bill;
+        // $totalbonus=$salary->bonus;
 
 
 
         $totalHour=Attendence::where('user_id',$request->user_id)->whereMonth('date',$request->month)->sum('hour');
-        $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour) + $totalmedicals +  $totalmobile_bill + $totalspecial +$totalbonus;
+         $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour) /*+ $totalmedicals +  $totalmobile_bill + $totalbonus*/;
         $per_hour_rate=((int)$totalBasic /160);
 //dd($per_hour_rate);
      Payroll::create([
@@ -48,7 +57,6 @@ class PayrollController extends Controller
         'totalSalary'=>$totalSalary,
         'totalworkingHour'=>'160',
         'per_hour_rate'=>$per_hour_rate,
-        'status'=>$request->status,
 
         ]);
         return redirect()->route('payroll.list');

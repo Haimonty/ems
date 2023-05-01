@@ -22,7 +22,7 @@ public function store(Request $request)
 {
   Designation::create([
     'name'=>$request->name,
-    'status'=>$request->status,
+    
 
   ]);
   return redirect()->route('designation.list');

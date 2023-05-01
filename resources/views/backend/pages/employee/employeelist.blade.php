@@ -1,20 +1,31 @@
 @extends('master')
 @section('content')
+
+<div class="row ">
+  <div class='col-md-4'></div>
+  <div class='col-md-4' >
+
+    <h1>Employee List</h1>
+
+  </div>
+
+
+  
 <form action="{{route('employee.list')}}">
 
 
-    <div class="row" style="padding-top: 40px;padding-bottom: 20px;">
-        <div class="col-md-4">
+    <div class="row" style="padding-top: 40px;padding-bottom: 20px;padding-left: 50px;">
+        <div class="col-md-5">
             <label for="">From Date</label>
             <input type="date" name="from_date" class="form-control" value="{{request()->from_date}}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <label for="">To Date</label>
             <input type="date" name="to_date" class="form-control" value="{{request()->to_date}}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
 
-            <button class="btn btn-success" type="submit">Search</button>
+            <button class="btn btn-success my-4" type="submit" >Search</button>
             <button class="btn btn-primary" onclick="printDiv('printArea')" type="button">Print</button>
         </div>
     </div>
@@ -23,11 +34,11 @@
 
    
    
-    <div id="printArea"> 
+    <div id="printArea">
+      
   <table class="table table-striped">
-    <a href="{{url('/employee/create')}}" class="btn btn-primary my-2">Add new</a>
+    <a href="{{url('/employee/create')}}" class="btn btn-primary ">Add new employee</a>
 
-    <h2 class="section-title px-5"><span class="px-2"> {{request()->search_key}}</span></h2>
 
 
     
@@ -42,7 +53,6 @@
       <th scope="col">Designation</th>      
       <th scope="col">Department</th>
       <th scope="col">Salary_structure</th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -63,7 +73,6 @@
        <td>{{optional($data->designation)->name}}</td>
       <td>{{optional($data->department)->name}}</td>
       <td>{{optional($data->salary_structure)->salaryclass}} </td>
-      <td>{{$data->status}}</td>
 
      <td>
       <a href="{{route('employee.view',$data->id)}}"class="btn btn-success">Veiw</a>
@@ -75,7 +84,7 @@
     @endforeach
   </tbody>
 </table>
-   
+ 
    {{$employees->links()}}
    </div>
    <script>

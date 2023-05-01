@@ -80,7 +80,6 @@ class UserController extends Controller
              'designation_id' => $request->designation_id,
              'department_id' => $request->department_id,
              'salary_structure_id' => $request->salary_structure_id,
-             'status' => $request->status,
              'image'=>$fileName
  
          ]); 
@@ -94,7 +93,6 @@ class UserController extends Controller
                  'user_id'=>$user->id,
                  'leavetype_id'=>$lt->id,
                  'balance'=>$lt->days,
-                 'status'=>'active'
              ]);
          }
          toastr()->success('Data has been saved successfully!', 'Congrats');
@@ -152,7 +150,6 @@ class UserController extends Controller
              'designation_id' => $request->designation_id,
              'department_id' => $request->department_id,
              'salary_structure_id' => $request->salary_structure_id,
-             'status' => $request->status,
              'image'=>$fileName
 
         ]);

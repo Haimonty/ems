@@ -1,12 +1,16 @@
 @extends('master')
 @section('content')
 
-<div class="row">
-   <div class='col-md-2'></div>
-   <div class='col-md-8'>
+<div class="row ">
+  <div class='col-md-4'></div>
+  <div class='col-md-4' >
 
-<h1>Leave Balance</h1>
+    <h1>Leave Balance List</h1>
 
+  </div>
+  <div class="row ">
+  <div class='col-md-3'></div>
+  <div class='col-md-6'>
 <table class="table table-striped">
 
   <thead>
@@ -15,8 +19,7 @@
       <th scope="col">Employee</th>
       <th scope="col">LeaveType</th>
 
-      <th scope="col">Balance</th>
-      <th scope="col">Status</th>
+      <th scope="col">Leave Balance</th>
 
 
 </tr>
@@ -28,12 +31,12 @@
       <td>{{$data->user?->name}}</td>
       <td>{{$data->leavetype->name}}</td>
       <td>{{$data->balance}}</td>
-      <td>{{$data->status}}</td>
    </tr>
     @endforeach
     
   </tbody>
 </table>
+  </div>
    </div>
 
 @endsection

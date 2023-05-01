@@ -21,7 +21,6 @@ class DepartmentController extends Controller
     {
      Department::create([
         'name'=>$request->name,
-        'status'=>$request->status,
 
         ]);
         return redirect()->route('department.list');
