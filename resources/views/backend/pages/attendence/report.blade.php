@@ -1,29 +1,36 @@
 @extends('master')
 
 @section('content')
-
 <div class="row ">
-  <div class='col-md-3'></div>
-  <div class='col-md-6' >
+  <div class='col-md-4'></div>
+  <div class='col-md-4' >
 
-    <h1>Attendence Report</h1>
+    <h1>Attendence List</h1>
 
   </div>
 
-<form action="{{route('attendence.report.search')}}" method="get">
 
-<div class="row">
-    <div class="col-md-4">
-        <label for="date"> date:</label>
-        <input name="date" type="date" class="form-control">
+  
+<form action="{{route('attendence.report.search')}}">
 
-    
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-success">Search</button>
+
+    <div class="row" style="padding-top: 40px;padding-bottom: 20px;padding-left: 50px;">
+        <div class="col-md-5">
+            <label for="">From Date</label>
+            <input type="date" name="from_date" class="form-control">
+        </div>
+        <div class="col-md-5">
+            <label for="">To Date</label>
+            <input type="date" name="to_date" class="form-control">
+        </div>
+        <div class="col-md-2">
+
+            <button class="btn btn-success my-4" type="submit" >Search</button>
+            <button class="btn btn-primary" onclick="printDiv('printArea')" type="button">Print</button>
+        </div>
     </div>
-</div>
 
-</form>
+    </form>
 <div id="attendenceReport">
 
 <h1>Attendence Report- {{request()->date}}</h1>

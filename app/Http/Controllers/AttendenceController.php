@@ -93,26 +93,28 @@ $status='Present';
     {
 
         $validator = Validator::make($request->all(), [
-            'date'    => 'required|date',
+            'from_date'    => 'required|date',
+            'to_date'    => 'required|date|after_or_equal:from_date',
             
         ]);
 
         if($validator->fails())
         {
 
-            toastr()->error('Date is required');
+            toastr()->error('Invalid Date');
             return redirect()->back();
         }
 
 
 
-       $date=$request->date;
+       $form=$request->from_date;
+       $to=$request->to_date;
        
 
 
 //       $status=$request->status;
 
-        $attendence=Attendence::whereDate('created_at', $date)->get();
+        $attendence=Attendence::whereBetween('created_at',[$form,$to] )->get();
         return view('backend.pages.attendence.report',compact('attendence'));
 
     }

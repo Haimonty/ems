@@ -21,7 +21,6 @@
           <th scope="col">Basic Salary</th>
           <th scope="col">Medical Expenses</th>
           <th scope="col">Mobile Bill</th>
-          <th scope="col">Bonus</th>
           <th scope="col">Action</th>
 
 
@@ -39,7 +38,6 @@
           <td>{{$data->medicals}}</td>
           <td>{{$data->mobile_bill}}</td>
 
-          <td>{{$data->bonus}}</td>
           <td>
             <a href="{{route('salaryStructure.view',$data->id)}}" class="btn btn-success">Veiw</a>
             <a href="{{route('salaryStructure.delete',$data->id)}}" class="btn btn-danger">Delete</a>

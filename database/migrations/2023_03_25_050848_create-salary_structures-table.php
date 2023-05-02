@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('basic');
             $table->integer('medicals');
             $table->integer('mobile_bill');
-            $table->integer('bonus');
             $table->rememberToken();
             $table->timestamps();
     });

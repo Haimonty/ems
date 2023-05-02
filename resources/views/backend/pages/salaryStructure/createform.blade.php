@@ -25,9 +25,7 @@
                <input required name="mobile_bill" placeholder="mobile bill" type="number" class="form-control">
                </div>
                <div>
-               <label for="">Enter Bonus Amount</label>
-               <input required name="bonus" placeholder="Bonus" type="number" class="form-control">
-               </div>
+               
                 <div>
                     <button type="submit" class="btn btn-success my-2">Submit</button>
                 </div>

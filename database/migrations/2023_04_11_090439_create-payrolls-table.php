@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('salary_structure_id');
             $table->integer('totalSalary');
             $table->integer('totalworkinghour');
+            $table->integer('totalHour');
             $table->integer('per_hour_rate');
 
             $table->string('month');

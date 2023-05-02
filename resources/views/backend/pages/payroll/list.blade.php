@@ -40,6 +40,7 @@
       <th scope="col">Salary_Class</th>
       <th scope="col">TotalSalary</th>
       <th scope="col">Totalworkinghour</th>
+      <th scope="col">ToatalAttendHour</th>
       <th scope="col">Per_hour_rate</th>
       <th scope="col">Month</th>
 
@@ -54,6 +55,7 @@
       <td>{{$data->salarystructure?->salaryclass}} </td>
       <td>{{$data->totalSalary}}</td>
       <td>{{$data->totalworkinghour}}</td>
+      <td>{{$data->totalHour}}</td>
       <td>{{$data->per_hour_rate}}</td>
       <td>{{date('F', mktime(0, 0, 0, $data->month, 10))}}</td>
  </tr>

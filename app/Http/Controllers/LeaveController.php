@@ -49,7 +49,7 @@ class LeaveController extends Controller
         $datetime1 = new DateTime($fdate);
         $datetime2 = new DateTime($tdate);
     
-        $days = $datetime2->diff($datetime1)->format('%a');
+        $days = $datetime2->diff($datetime1)->format('%a')+1;
         
         //check employee has balance
         $leaveBalance=LeaveBalance::where('user_id',$request->user_id)
@@ -69,10 +69,9 @@ if($leaveExistFromDate OR $leaveExistToDate)
     return redirect()->back();
 }
 
-        if(/*$leaveBalance && */ $leaveBalance->balance >= $days)
-
+        if($leaveBalance->balance >= $days)
         {
-            //dd($request->all());
+           
             Leave::create([
                 'user_id'=>$request->user_id,
                 'title'=>$request->title,
@@ -115,7 +114,7 @@ if($leaveExistFromDate OR $leaveExistToDate)
         $datetime1 = new DateTime($leave->formdate);
         $datetime2 = new DateTime($leave->todate);
     
-        $days =( $datetime2->diff($datetime1))->format('%a');
+        $days =( $datetime2->diff($datetime1))->format('%a')+1;
         
         //leave restore into balance
         $balance=LeaveBalance::where('leavetype_id',$leave->leavetype_id)

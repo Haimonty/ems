@@ -30,7 +30,7 @@ class SalaryStructureController extends Controller
         'basic'=>'required',
         'medicals'=>'required',
         'mobile_bill'=>'required',
-        'bonus'=>'required',
+        
     ]);
     if($validate->fails())
     {
@@ -44,7 +44,6 @@ class SalaryStructureController extends Controller
     'basic'=>$request->basic,
     'medicals'=>$request->medicals,
     'mobile_bill'=>$request->mobile_bill,
-    'bonus'=>$request->bonus,
 
 
 

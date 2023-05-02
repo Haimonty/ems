@@ -26,6 +26,8 @@ Route::post('/do-login',[HomeController::class,'doLogin'])->name('do.login');
 //for employee
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home',[HomeController::class,'home'])->name('home'); 
+    Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
+Route::get('/home/profile',[HomeController::class,'profile'])->name('home.profile');
     //leave balance
 Route::get('/leaveBalance',[LeaveBalanceController::class,'leaveBalance'])->name('leaveBalance.list');
 Route::get('/leaveBalance/create',[LeaveBalanceController::class,'create'])->name('leavebalance.create');
@@ -47,8 +49,7 @@ Route::get('leave/create',[LeaveController::class,'create'])->name('leave.create
 Route::post('leave/store',[LeaveController::class,'store'])->name('leave.store');
 //checkAdmin
 Route::group(['middleware'=>'checkAdmin'],function(){
-Route::get('/home/logout',[HomeController::class,'logout'])->name('logout');
-Route::get('/home/profile',[HomeController::class,'profile'])->name('home.profile');
+
 
 Route::get('/employee',[UserController::class, 'employee'])->name('employee.list'); 
 Route:: get('/employee/create',[UserController::class,'employeeCreate']);

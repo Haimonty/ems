@@ -58,6 +58,7 @@ class PayrollController extends Controller
         'month'=>$request->month,
         'totalSalary'=>$totalSalary,
         'totalworkingHour'=>'160',
+        'totalHour'=>$totalHour,
         'per_hour_rate'=>$per_hour_rate,
 
         ]);
