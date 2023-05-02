@@ -55,7 +55,7 @@
       <td>{{$data->totalSalary}}</td>
       <td>{{$data->totalworkinghour}}</td>
       <td>{{$data->per_hour_rate}}</td>
-      <td>{{$data->month}}</td>
+      <td>{{date('F', mktime(0, 0, 0, $data->month, 10))}}</td>
  </tr>
  @endforeach
    

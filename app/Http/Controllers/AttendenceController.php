@@ -36,6 +36,13 @@ class AttendenceController extends Controller
     }
     public function checkin(){
 
+      
+$status='Present';
+      if (time() > strtotime("08:00:00")) {
+        $status='Late';
+      }
+
+      
       $isAttendence = Attendence::whereDate("date",now())->where("user_id",auth()->user()->id)->first();
 //dd($isAttendence);
      
@@ -43,10 +50,12 @@ class AttendenceController extends Controller
         toastr()->error('already checked in');
         return redirect()->back();
       }
+
+
       Attendence::create([
         'in_time'=>now(),
         'date'=>date('Y-m-d'),
-        'status'=>'Present',
+        'status'=>$status,
         'user_id'=>auth()->user()->id
 
       ]);

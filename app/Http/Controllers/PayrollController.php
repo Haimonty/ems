@@ -40,14 +40,16 @@ class PayrollController extends Controller
 
         $salary=Salary_structure::find($request->salary_structure_id);
         $totalBasic=$salary->basic;
-        // $totalmedicals=$salary->medicals;
-        // $totalmobile_bill=$salary->mobile_bill;
-        // $totalbonus=$salary->bonus;
+        // dd($totalBasic);
+        $totalmedicals=$salary->medicals;
+        $totalmobile_bill=$salary->mobile_bill;
+        
 
 
 
         $totalHour=Attendence::where('user_id',$request->user_id)->whereMonth('date',$request->month)->sum('hour');
-         $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour) /*+ $totalmedicals +  $totalmobile_bill + $totalbonus*/;
+        // dd($totalHour) ;
+        $totalSalary=(((int)$totalBasic / 160) * (int)$totalHour) + $totalmedicals +  $totalmobile_bill ;
         $per_hour_rate=((int)$totalBasic /160);
 //dd($per_hour_rate);
      Payroll::create([
